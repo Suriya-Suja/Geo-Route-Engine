@@ -1,0 +1,19 @@
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  application:
+    name: GeoRoute
+  datasource:
+    url: jdbc:postgresql://localhost:5432/geo_route
+    username: postgres
+    password: Suriya@2306
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+
+
