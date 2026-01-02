@@ -1,6 +1,6 @@
 package com.app.georoute.mappers;
 
-import com.app.georoute.dtos.UserResponse;
+import com.app.georoute.dtos.UserLocationResponse;
 import com.app.georoute.entities.UserLocation;
 import org.locationtech.jts.geom.Point;
 import org.mapstruct.Mapper;
@@ -14,9 +14,9 @@ public interface UserLocationMapper {
 
     @Mapping(target = "latitude", source = "location", qualifiedByName = "mapLatitude")
     @Mapping(target = "longitude", source = "location", qualifiedByName = "mapLongitude")
-    UserResponse toResponseDto(UserLocation user);
+    UserLocationResponse toResponseDto(UserLocation user);
 
-    List<UserResponse> toResponseList(List<UserLocation> userLocations);
+    List<UserLocationResponse> toResponseList(List<UserLocation> userLocations);
 
     @Named("mapLatitude")
     default double mapLatitude(Point location){

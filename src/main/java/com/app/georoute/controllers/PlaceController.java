@@ -11,8 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/places")
-@CrossOrigin(origins = "*")
+@RequestMapping("/place")
 @AllArgsConstructor
 public class PlaceController {
     private final PlaceService placeService;

@@ -1,22 +1,14 @@
 package com.app.georoute.repositories;
 
-import com.app.georoute.entities.UserLocation;
-import org.locationtech.jts.geom.Point;
+import com.app.georoute.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
+import java.util.Optional;
 
 @Repository
-public interface UserRepository extends JpaRepository<UserLocation, Long> {
+public interface UserRepository extends JpaRepository<User,Long> {
+    Optional<User> findByUsername(String username);
 
-    // Cast to geography to ensure radius is treated as METERS
-    @Query(value = "SELECT * FROM users u WHERE ST_DWithin(CAST(u.location AS geography), CAST(:point AS geography), :radius)", nativeQuery = true)
-    List<UserLocation> findUsersWithinRadius(@Param("point") Point point, @Param("radius") double radius);
-
-    @Query(value = "SELECT * FROM users u ORDER BY u.location <-> :point LIMIT 5", nativeQuery = true)
-    List<UserLocation> findNearest(@Param("point") Point point);
-
+    Optional<User> findByEmail(String email);
 }
