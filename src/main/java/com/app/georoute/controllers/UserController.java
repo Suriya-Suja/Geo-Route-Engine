@@ -1,7 +1,8 @@
 package com.app.georoute.controllers;
 
+import com.app.georoute.dtos.UserResponse;
 import com.app.georoute.entities.User;
-import com.app.georoute.repositories.UserRepository;
+import com.app.georoute.services.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,16 +12,16 @@ import org.springframework.web.bind.annotation.*;
 @AllArgsConstructor
 public class UserController {
 
-    private final UserRepository userRepository;
+    private final UserService userService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<User>  getUser(@RequestParam Long userId){
-        User user = userRepository.findById(userId).orElse(null);
-        if(user==null){
-            return ResponseEntity.notFound().build();
-        }
+    public ResponseEntity<UserResponse>  getUser(@RequestParam Long userId){
+        return ResponseEntity.ok(userService.getUserById(userId));
+    }
 
-        return ResponseEntity.ok(user);
+    @GetMapping
+    public ResponseEntity<UserResponse> getCurrentUser(){
+        return ResponseEntity.ok(userService.getCurrentUser());
     }
 
 

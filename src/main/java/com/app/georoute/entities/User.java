@@ -38,8 +38,7 @@ public class User {
     @CreationTimestamp
     private LocalDateTime createdAt;
 
-    @OneToMany(mappedBy = "user", orphanRemoval = true)
+    @OneToMany(mappedBy = "user", orphanRemoval = true, fetch = FetchType.LAZY)
     private List<UserLocation> locations = new ArrayList<>();
-
 
 }

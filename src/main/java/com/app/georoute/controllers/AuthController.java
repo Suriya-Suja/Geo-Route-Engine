@@ -2,14 +2,11 @@ package com.app.georoute.controllers;
 
 import com.app.georoute.dtos.CreateUserRequest;
 import com.app.georoute.dtos.UserLoginRequest;
-import com.app.georoute.entities.User;
-import com.app.georoute.mappers.UserMapper;
-import com.app.georoute.repositories.UserRepository;
-import com.app.georoute.security.JwtService;
+import com.app.georoute.dtos.UserResponse;
+import com.app.georoute.services.AuthService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,36 +17,22 @@ import org.springframework.web.bind.annotation.RestController;
 @AllArgsConstructor
 public class AuthController {
 
-    private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
-    private final UserMapper userMapper;
-    private final JwtService jwtService;
+    private final AuthService authService;
 
-    // TODO: create AuthService and clean up the controller
 
     @PostMapping("/login")
-    public String login(@RequestBody UserLoginRequest request) {
+    public ResponseEntity<String> login(@RequestBody UserLoginRequest request) {
 
-        // TODO: Do proper error handling
+        String token = authService.Login(request);
 
-        var user = userRepository.findByEmail(request.getEmail())
-                .orElseThrow(() -> new RuntimeException("User not found"));
-
-        if(!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
-            throw new RuntimeException("Wrong password");
-        }
-
-        return jwtService.generateToken(user);
+        return ResponseEntity.ok(token);
     }
 
     @PostMapping("/sign-up")
     public ResponseEntity<?> signUp(@RequestBody CreateUserRequest request){
-        var user = userRepository.findByEmail(request.getEmail()).orElse(null);
-        if(user == null) {
-            User newUser = userMapper.toEntity(request);
-            newUser.setPassword(passwordEncoder.encode(newUser.getPassword()));
-            userRepository.save(newUser);
-            return ResponseEntity.ok(newUser);
+        UserResponse response = authService.signUp(request);
+        if(response != null) {
+            return ResponseEntity.ok(response);
         }
         return ResponseEntity.status(HttpStatus.CONFLICT).body("User already exists");
     }

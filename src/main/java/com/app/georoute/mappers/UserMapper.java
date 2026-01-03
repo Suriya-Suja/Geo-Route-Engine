@@ -1,6 +1,7 @@
 package com.app.georoute.mappers;
 
 import com.app.georoute.dtos.CreateUserRequest;
+import com.app.georoute.dtos.UserResponse;
 import com.app.georoute.entities.User;
 import org.mapstruct.Mapper;
 
@@ -8,5 +9,6 @@ import org.mapstruct.Mapper;
 public interface UserMapper {
 
     User toEntity(CreateUserRequest createUserRequest);
+    UserResponse toDto(User user);
 
 }

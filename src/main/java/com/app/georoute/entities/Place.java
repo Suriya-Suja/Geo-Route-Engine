@@ -27,6 +27,7 @@ public class Place {
     @Column(columnDefinition = "geometry(Point, 4326)")
     private Point location;
 
+
     @Transient
     public double getLat(){
         return location != null ? location.getY() : 0;
