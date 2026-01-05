@@ -24,11 +24,20 @@ public class UserService {
         return userMapper.toDto(user);
     }
 
-    public UserResponse getCurrentUser(){
+    public UserResponse getCurrentUserDetails(){
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if(principal instanceof CustomUserDetails){
             CustomUserDetails userDetails = (CustomUserDetails) principal;
             return userMapper.toDto(userDetails.getUser());
+        }
+
+        throw new RuntimeException("User not authenticated");
+    }
+
+    public User getCurrentUser(){
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if(principal instanceof CustomUserDetails){
+            return ((CustomUserDetails) principal).getUser();
         }
 
         throw new RuntimeException("User not authenticated");

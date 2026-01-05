@@ -1,5 +1,6 @@
 package com.app.georoute.repositories;
 
+import com.app.georoute.entities.User;
 import com.app.georoute.entities.UserLocation;
 import org.locationtech.jts.geom.Point;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -19,4 +20,13 @@ public interface UserLocationRepository extends JpaRepository<UserLocation, Long
     @Query(value = "SELECT * FROM users u ORDER BY u.location <-> :point LIMIT 5", nativeQuery = true)
     List<UserLocation> findNearest(@Param("point") Point point);
 
+    @Query(value = """
+        SELECT COUNT(ul) > 0 
+        FROM UserLocation ul 
+        WHERE  ul.user = :user
+        AND ST_Dwithin(ul.location, :point, 0.00005) = true
+    """)
+    boolean existsByUserAndLocation(@Param("user") User user,@Param("point") Point location );
+
+    List<UserLocation> getUserLocationsByUser(User user);
 }

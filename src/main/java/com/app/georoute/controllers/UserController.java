@@ -1,7 +1,6 @@
 package com.app.georoute.controllers;
 
 import com.app.georoute.dtos.UserResponse;
-import com.app.georoute.entities.User;
 import com.app.georoute.services.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +20,7 @@ public class UserController {
 
     @GetMapping
     public ResponseEntity<UserResponse> getCurrentUser(){
-        return ResponseEntity.ok(userService.getCurrentUser());
+        return ResponseEntity.ok(userService.getCurrentUserDetails());
     }
 
 
