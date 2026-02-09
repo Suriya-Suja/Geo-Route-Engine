@@ -21,10 +21,10 @@ public interface UserLocationRepository extends JpaRepository<UserLocation, Long
     List<UserLocation> findNearest(@Param("point") Point point);
 
     @Query(value = """
-        SELECT COUNT(ul) > 0 
-        FROM UserLocation ul 
+        SELECT (COUNT(ul) > 0)
+        FROM UserLocation ul
         WHERE  ul.user = :user
-        AND ST_Dwithin(ul.location, :point, 0.00005) = true
+        AND ST_Distance(ul.location, :point) < 0.00005
     """)
     boolean existsByUserAndLocation(@Param("user") User user,@Param("point") Point location );
 

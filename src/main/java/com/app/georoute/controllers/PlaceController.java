@@ -1,6 +1,7 @@
 package com.app.georoute.controllers;
 
 import com.app.georoute.dtos.PlaceRequest;
+import com.app.georoute.dtos.PlaceResponse;
 import com.app.georoute.dtos.UpdateImageUrlRequest;
 import com.app.georoute.entities.Place;
 import com.app.georoute.services.PlaceService;
@@ -11,18 +12,21 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/place")
+@RequestMapping("/places")
+
 @AllArgsConstructor
 public class PlaceController {
     private final PlaceService placeService;
 
     @GetMapping
-    public List<Place> findAll(){
-        return placeService.findAll();
+    public ResponseEntity<List<PlaceResponse>> findAll(){
+        return ResponseEntity.ok(placeService.findAll());
     }
 
-
-    // Need work to be done
+    /*
+    TODO:
+        Role based authorization yet to be implemented.
+     */
     @PostMapping("/admin")
     public ResponseEntity<Place> createPlace(@RequestBody PlaceRequest request){
         return ResponseEntity.ok(placeService.save(request));

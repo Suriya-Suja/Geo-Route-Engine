@@ -4,7 +4,7 @@ spring:
   application:
     name: GeoRoute
   datasource:
-    url: jdbc:postgresql://localhost:5432/geo_route
+    url: jdbc:postgresql://localhost:5433/geo_route
     username: postgres
     password: Suriya@2306
   jpa:

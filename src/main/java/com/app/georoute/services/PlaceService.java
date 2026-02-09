@@ -1,6 +1,7 @@
 package com.app.georoute.services;
 
 import com.app.georoute.dtos.PlaceRequest;
+import com.app.georoute.dtos.PlaceResponse;
 import com.app.georoute.dtos.UpdateImageUrlRequest;
 import com.app.georoute.entities.Place;
 import com.app.georoute.mappers.PlaceMapper;
@@ -20,8 +21,9 @@ public class PlaceService {
     private final PlaceRepository placeRepository;
     private final PlaceMapper placeMapper;
 
-    public List<Place> findAll(){
-        return placeRepository.findAll();
+    public List<PlaceResponse> findAll(){
+        List<Place> places = placeRepository.findAll();
+        return placeMapper.toResponseList(places);
     }
 
     public Place save(PlaceRequest request){

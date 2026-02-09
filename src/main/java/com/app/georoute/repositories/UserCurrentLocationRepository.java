@@ -15,7 +15,7 @@ public interface UserCurrentLocationRepository extends JpaRepository<UserCurrent
 
     @Query("""
         SELECT ucl FROM UserCurrentLocation ucl
-        WHERE ST_DWithin(ucl.lastKnownLocation, :center, :radius) = true
+        WHERE ST_Distance(ucl.lastKnownLocation, :center) < :radius
     """)
     List<UserCurrentLocation> findNearBy(@Param("center") Point center, @Param("radius") double radius);
 }

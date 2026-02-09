@@ -1,6 +1,7 @@
 package com.app.georoute.mappers;
 
 import com.app.georoute.dtos.PlaceRequest;
+import com.app.georoute.dtos.PlaceResponse;
 import com.app.georoute.entities.Place;
 import com.app.georoute.util.GeometryUtil;
 import org.locationtech.jts.geom.Point;
@@ -15,6 +16,12 @@ public interface PlaceMapper {
 
     @Mapping(target = "location", source = ".", qualifiedByName = "mapLocation")
     Place toEntity(PlaceRequest request);
+
+    @Mapping(target = "latitude", expression = "java(place.getLocation().getY())")
+    @Mapping(target = "longitude", expression = "java(place.getLocation().getX())")
+    PlaceResponse toResponse(Place place);
+
+    List<PlaceResponse> toResponseList(List<Place> places);
 
     @Named("mapLocation")
     default Point mapLocation(PlaceRequest request){
