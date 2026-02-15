@@ -8,31 +8,31 @@ body {
 
 /* Target our specific class of tooltips */
 .leaflet-tooltip.photo-tooltip {
-    padding: 0 !important; /* Get rid of Leaflet's default padding */
+    padding: 0 !important;
     border: none !important;
     border-radius: 12px !important;
     box-shadow: 0 8px 25px rgba(0,0,0,0.3) !important;
     /* FORCE SIZE & WRAPPING */
     min-width: 220px;
     max-width: 240px;
-    white-space: normal !important; /* THIS FIXES THE TEXT OVERFLOW */
-    background-color: transparent !important; /* Transparent background for the wrapper */
+    white-space: normal !important;
+    background-color: transparent !important;
 }
 
 /* The actual white box inside the tooltip */
 .tooltip-card-content {
     background: white;
     border-radius: 12px;
-    overflow: hidden; /* Ensures image corners match border radius */
+    overflow: hidden;
 }
 
 /* The Image part */
 .tooltip-image {
     width: 100%;
-    height: 160px; /* Fixed height for squarish look */
-    object-fit: cover; /* Crops image nicely to fill the square */
+    height: 160px;
+    object-fit: cover;
     display: block;
-    background-color: #f0f0f0; /* Grey loading placeholder */
+    background-color: #f0f0f0;
 }
 
 /* The Text part */

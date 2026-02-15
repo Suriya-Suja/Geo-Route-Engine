@@ -10,15 +10,15 @@ const Sidebar = ({ selectedSpots, removeSpot, onOptimize, useMyLocation, setUseM
   return (
     <div style={{
       position: 'absolute', top: '20px', left: '20px', width: '350px', maxHeight: '90vh',
-      backgroundColor: 'rgba(255, 255, 255, 0.70)', // Now it's glass!
-      backdropFilter: 'blur(12px)',                 // Makes the map behind it blurry
-      border: '1px solid rgba(255, 255, 255, 0.3)', // A shiny glass edge
-      boxShadow: '0 8px 32px rgba(0, 0, 0, 0.15)',  // Soft shadow
+      backgroundColor: 'rgba(255, 255, 255, 0.70)',
+      backdropFilter: 'blur(12px)',
+      border: '1px solid rgba(255, 255, 255, 0.3)',
+      boxShadow: '0 8px 32px rgba(0, 0, 0, 0.15)',
       zIndex: 1000,
       padding: '25px', borderRadius: '16px', overflowY: 'auto', fontFamily: '"Segoe UI", Roboto, sans-serif'
     }}>
       
-      {/* ✨ 1. The Pleasing Header */}
+      {/* 1. The Header */}
       <div style={{marginBottom: '25px', borderBottom: '2px solid #f0f0f0', paddingBottom: '15px'}}>
         <h2 style={{ 
             margin: '0', 
@@ -109,7 +109,7 @@ const Sidebar = ({ selectedSpots, removeSpot, onOptimize, useMyLocation, setUseM
         })}
       </div>
 
-      {/* 🚀 Action Button */}
+      {/* Action Button */}
       {(selectedSpots.length >= 1) && (
         <button 
           onClick={onOptimize}

@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import apiClient from '../api/axiosConfig'; // Use our new client
+import apiClient from '../api/axiosConfig';
 import { useAuth } from '../context/AuthContext';
-import './AuthOverlay.css'; // We will create this CSS next
+import './AuthOverlay.css';
 
 const AuthOverlay = () => {
     const { login, logout, isAuthenticated } = useAuth();
@@ -21,7 +21,7 @@ const AuthOverlay = () => {
         try {
             if (isLoginView) {
                 // LOGIN LOGIC
-                // Note: Your backend returns a raw String for login, not JSON
+                // Note: backend returns a raw String for login, not JSON
                 const response = await apiClient.post('/auth/login', {
                     email: formData.email,
                     password: formData.password

@@ -8,7 +8,7 @@ import L from 'leaflet'
 import './App.css'
 import Sidebar from './Sidebar'
 
-// --- Icon Fix ---
+
 import icon from 'leaflet/dist/images/marker-icon.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 let DefaultIcon = L.icon({
@@ -49,7 +49,7 @@ function MapApp() {
   useEffect(() => {
     const fetchPlaces = async () => {
       try {
-        const response = await apiClient.get('/places') // Endpoint correction (plural usually preferred, check your backend)
+        const response = await apiClient.get('/places')
         console.log("Backend Response: ", response.data);
 
         // 1. Map the data to ensure 'lat' and 'lon' exist
@@ -59,7 +59,6 @@ function MapApp() {
             lon: place.longitude || place.lon || place.lng
         }));
 
-        // 2. CRITICAL FIX: Save the FORMATTED data, not the raw response
         setPlaces(formattedPlaces) 
       } catch (error) { 
         console.error(error) 
