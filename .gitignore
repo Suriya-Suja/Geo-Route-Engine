@@ -1,0 +1,5 @@
+.env
+
+backend/graph-cache/
+
+frontend/node_modules/

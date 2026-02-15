@@ -1,0 +1,45 @@
+.auth-widget {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1000; /* Above the map */
+}
+
+.login-trigger-btn, .logout-btn {
+    padding: 10px 20px;
+    background: white;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.auth-card {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    width: 250px;
+    position: relative;
+}
+
+.auth-card input {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+.submit-btn {
+    width: 100%;
+    background: #2196F3;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.error-msg { color: red; font-size: 0.8rem; }
+.toggle-text { font-size: 0.8rem; color: #666; cursor: pointer; text-align: center; margin-top: 10px;}
+.close-btn { position: absolute; top: 5px; right: 10px; border: none; background: none; cursor: pointer; font-size: 1.2rem;}
