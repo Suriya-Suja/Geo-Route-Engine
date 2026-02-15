@@ -1,7 +1,34 @@
--- Seeding the Pondicherry Photo Spots
--- Note: ST_MakePoint takes (Longitude, Latitude)
+-- 2. Seed the Local Pondicherry Photo Spots
+-- Note: ST_MakePoint strictly requires (Longitude, Latitude)
 INSERT INTO places (name, description, image_url, location) VALUES
-                                                                ('Matrimandir (Auroville)', 'The golden globe and soul of the city.', 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Matrimandir_auroville.jpg/800px-Matrimandir_auroville.jpg', ST_SetSRID(ST_MakePoint(79.8105, 12.0069), 4326)),
-                                                                ('Rock Beach (Gandhi Statue)', 'Iconic promenade with the famous Gandhi statue. Best at sunrise.', 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Gandhi_Statue_Pondicherry.jpg/800px-Gandhi_Statue_Pondicherry.jpg', ST_SetSRID(ST_MakePoint(79.8340, 11.9348), 4326)),
-                                                                ('French Quarter (White Town)', 'Bright yellow colonial walls and bougainvillea flowers.', 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Street_in_White_Town%2C_Pondicherry.jpg/800px-Street_in_White_Town%2C_Pondicherry.jpg', ST_SetSRID(ST_MakePoint(79.8315, 11.9325), 4326))
+                                                                (
+                                                                    'Matrimandir',
+                                                                    'The golden globe and spiritual center of Auroville.',
+                                                                    '/images/matrimandir.jpg',
+                                                                    ST_SetSRID(ST_MakePoint(79.8105, 12.0069), 4326)
+                                                                ),
+                                                                (
+                                                                    'Gandhi Statue (Rock Beach)',
+                                                                    'Iconic statue on the Promenade beach, perfect for sunrise views.',
+                                                                    '/images/gandhi_statue.jpg',
+                                                                    ST_SetSRID(ST_MakePoint(79.8340, 11.9348), 4326)
+                                                                ),
+                                                                (
+                                                                    'Bharathi Park',
+                                                                    'A serene green park in the heart of the French Quarter featuring the historic Aayi Mandapam.',
+                                                                    '/images/bharathi_park.jpg',
+                                                                    ST_SetSRID(ST_MakePoint(79.8336, 11.9328), 4326)
+                                                                ),
+                                                                (
+                                                                    'Pondy Marina',
+                                                                    'A vibrant coastal spot with food stalls, events, and a great view of the Bay of Bengal.',
+                                                                    '/images/pondy_marina.jpg',
+                                                                    ST_SetSRID(ST_MakePoint(79.8296, 11.9091), 4326)
+                                                                ),
+                                                                (
+                                                                    'Serenity Beach',
+                                                                    'A beautiful sandy beach lined with palm trees, famous for surfing and fishing boats.',
+                                                                    '/images/serenity_beach.jpg',
+                                                                    ST_SetSRID(ST_MakePoint(79.8456, 11.9692), 4326)
+                                                                )
     ON CONFLICT (name) DO NOTHING;
