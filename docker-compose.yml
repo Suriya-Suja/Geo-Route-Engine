@@ -1,0 +1,50 @@
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./backend/osm:/app/osm
+      - ./backend/graph-cache:/app/graph-cache
+    networks:
+      - geo-network
+    depends_on:
+      - db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/${DB_NAME}
+      SPRING_DATASOURCE_USERNAME: ${DB_USER}
+      SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD}
+      JWT_SECRET: ${JWT_SECRET}
+#      JAVA_TOOL_OPTIONS: -Xmx4g -Xms4g
+
+
+
+  db:
+    image: postgis/postgis:16-3.4
+    container_name: georoute-db
+    environment:
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: secretPassword
+      POSTGRES_DB: georoute_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - geo-network
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:80"
+    networks:
+      - geo-network
+
+
+volumes:
+  postgres_data:
+
+networks:
+  geo-network:
+    driver: bridge
+

@@ -1,0 +1,55 @@
+/* 1. Reset body margin so map fills screen */
+body {
+    margin: 0;
+    padding: 0;
+}
+
+/* --- CUSTOM LEAFLET TOOLTIP STYLES --- */
+
+/* Target our specific class of tooltips */
+.leaflet-tooltip.photo-tooltip {
+    padding: 0 !important; /* Get rid of Leaflet's default padding */
+    border: none !important;
+    border-radius: 12px !important;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3) !important;
+    /* FORCE SIZE & WRAPPING */
+    min-width: 220px;
+    max-width: 240px;
+    white-space: normal !important; /* THIS FIXES THE TEXT OVERFLOW */
+    background-color: transparent !important; /* Transparent background for the wrapper */
+}
+
+/* The actual white box inside the tooltip */
+.tooltip-card-content {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden; /* Ensures image corners match border radius */
+}
+
+/* The Image part */
+.tooltip-image {
+    width: 100%;
+    height: 160px; /* Fixed height for squarish look */
+    object-fit: cover; /* Crops image nicely to fill the square */
+    display: block;
+    background-color: #f0f0f0; /* Grey loading placeholder */
+}
+
+/* The Text part */
+.tooltip-text {
+    padding: 12px 15px;
+    text-align: left;
+}
+
+.tooltip-text h4 {
+    margin: 0 0 5px 0;
+    color: #333;
+    font-size: 16px;
+}
+
+.tooltip-text p {
+    margin: 0;
+    color: #666;
+    font-size: 13px;
+    line-height: 1.4;
+}
